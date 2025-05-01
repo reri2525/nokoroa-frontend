@@ -29,7 +29,7 @@ export default function Header() {
             ログイン
           </Button>
           <Button variant="contained" color="secondary">
-            新規登録
+            新規登録です
           </Button>
         </Box>
       </Toolbar>
