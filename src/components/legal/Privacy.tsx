@@ -15,8 +15,13 @@ export default function Privacy() {
       }}
     >
       <Container maxWidth="md">
-        {/* ページタイトル */}
-        <Typography variant="h4" component="h1" align="center" gutterBottom>
+        <Typography
+          variant="h4"
+          component="h1"
+          align="center"
+          gutterBottom
+          sx={{ pt: 3 }}
+        >
           プライバシーポリシー
         </Typography>
 

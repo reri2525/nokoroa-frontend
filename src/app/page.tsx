@@ -8,6 +8,7 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
+import Link from 'next/link';
 import React from 'react';
 
 export default function TopPage() {
@@ -80,6 +81,9 @@ export default function TopPage() {
 
             <Box sx={{ mt: 4 }}>
               <Button
+                component={Link}
+                href="/signup"
+                scroll={false}
                 variant="contained"
                 color="secondary"
                 size="large"

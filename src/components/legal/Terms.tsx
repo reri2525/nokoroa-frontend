@@ -16,7 +16,13 @@ export default function Terms() {
     >
       <Container maxWidth="md">
         {/* ページタイトル */}
-        <Typography variant="h4" component="h1" align="center" gutterBottom>
+        <Typography
+          variant="h4"
+          component="h1"
+          align="center"
+          gutterBottom
+          sx={{ pt: 3 }}
+        >
           利用規約
         </Typography>
 
