@@ -9,42 +9,63 @@ import {
   DialogContent,
   DialogTitle,
   IconButton,
+  Link as MuiLink,
   Stack,
   TextField,
+  Typography,
 } from '@mui/material';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 /* ------------------ スキーマ & 型 ------------------ */
-const schema = z.object({
-  name: z.string().min(2, '2文字以上入力してください'),
-  email: z.string().email('メールアドレスが不正です'),
-  password: z.string().min(6, '6文字以上入力してください'),
-});
+const schema = z
+  .object({
+    name: z.string().min(2, '2文字以上入力してください'),
+    email: z.string().email('メールアドレスが不正です'),
+    password: z.string().min(6, '6文字以上入力してください'),
+    confirmPassword: z.string().min(6, '6文字以上入力してください'),
+  })
+  .refine((v) => v.password === v.confirmPassword, {
+    path: ['confirmPassword'],
+    message: '確認用パスワードが一致しません',
+  });
+
 type FormType = z.infer<typeof schema>;
 
 /* ------------------ Props 定義 ------------------ */
 interface SignUpDialogProps {
-  open: boolean;
+  /** `router.back()` などで「戻る」挙動をさせるコールバック */
   onClose: () => void;
 }
 
 /* ------------------ Dialog 本体 ------------------ */
-export default function SignUpDialog({ open, onClose }: SignUpDialogProps) {
+export default function SignUpDialog({ onClose }: SignUpDialogProps) {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<FormType>({ resolver: zodResolver(schema) });
 
+  /* ----- フォーム送信 ----- */
   const onSubmit = async (data: FormType) => {
-    await new Promise((r) => setTimeout(r, 1000)); // 疑似 API
+    await new Promise((r) => setTimeout(r, 1000));
     console.log(data);
-    onClose(); // 成功時に閉じる
+    onClose();
+  };
+
+  /* ----- リンククリック時：まず閉じて、その後に遷移 ----- */
+  const jump = (path: string) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    onClose();
+    setTimeout(() => router.push(path), 0);
   };
 
   return (
-    <Dialog open={open} onClose={onClose} maxWidth="xs" fullWidth>
+    <Dialog open maxWidth="xs" fullWidth onClose={onClose}>
+      {/* ---------- ヘッダー ---------- */}
       <DialogTitle sx={{ pr: 6 }}>
         新規登録
         <IconButton
@@ -56,8 +77,24 @@ export default function SignUpDialog({ open, onClose }: SignUpDialogProps) {
         </IconButton>
       </DialogTitle>
 
+      {/* ---------- 本体 ---------- */}
       <form onSubmit={handleSubmit(onSubmit)}>
         <DialogContent>
+          <Typography variant="body2" sx={{ mb: 2 }}>
+            <MuiLink href="/terms" underline="hover" onClick={jump('/terms')}>
+              利用規約
+            </MuiLink>
+            および
+            <MuiLink
+              href="/privacy"
+              underline="hover"
+              onClick={jump('/privacy')}
+            >
+              プライバシーポリシー
+            </MuiLink>
+            に同意した上で、以下の「登録」ボタンを押してください。
+          </Typography>
+
           <Stack spacing={2}>
             <TextField
               label="ユーザー名"
@@ -82,17 +119,36 @@ export default function SignUpDialog({ open, onClose }: SignUpDialogProps) {
               error={!!errors.password}
               helperText={errors.password?.message}
             />
+            <TextField
+              label="パスワード（確認用）"
+              type="password"
+              fullWidth
+              {...register('confirmPassword')}
+              error={!!errors.confirmPassword}
+              helperText={errors.confirmPassword?.message}
+            />
           </Stack>
         </DialogContent>
 
-        <DialogActions sx={{ px: 3, pb: 2 }}>
-          <Button variant="outlined" onClick={onClose} disabled={isSubmitting}>
-            キャンセル
-          </Button>
-          <Button variant="contained" type="submit" disabled={isSubmitting}>
+        {/* ---------- アクション ---------- */}
+        <DialogActions sx={{ px: 3, pb: 2, pt: 0 }}>
+          <Button
+            variant="contained"
+            type="submit"
+            fullWidth
+            disabled={isSubmitting}
+          >
             登録
           </Button>
         </DialogActions>
+
+        {/* ---------- フッター ---------- */}
+        <Typography variant="body2" align="center" sx={{ mb: 2 }}>
+          会員登録済の方は{' '}
+          <MuiLink href="/login" underline="hover" onClick={jump('/login')}>
+            こちら
+          </MuiLink>
+        </Typography>
       </form>
     </Dialog>
   );

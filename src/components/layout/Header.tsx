@@ -53,7 +53,12 @@ export default function Header() {
           <Button variant="outlined" color="inherit">
             ログイン
           </Button>
-          <Button variant="contained" color="secondary">
+          <Button
+            component={NextLink}
+            href="/signup"
+            variant="contained"
+            color="secondary"
+          >
             新規登録
           </Button>
         </Box>
