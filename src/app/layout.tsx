@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Nokoroa',
+  title: 'Tabi Memory',
   description: '旅行の思い出を共有できるアプリケーションです。',
 };
 

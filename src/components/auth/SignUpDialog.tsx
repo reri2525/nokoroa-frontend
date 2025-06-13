@@ -73,9 +73,30 @@ export default function SignUpDialog({ onClose }: SignUpDialogProps) {
 
       const result = await response.json();
       console.log('登録成功:', result);
+
+      // 新規登録成功後、自動的にログイン
+      const loginResponse = await fetch(`${API_URL}/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: data.email,
+          password: data.password,
+        }),
+      });
+
+      if (!loginResponse.ok) {
+        throw new Error('自動ログインに失敗しました');
+      }
+
+      const loginResult = await loginResponse.json();
+      console.log('自動ログイン成功:', loginResult);
+      localStorage.setItem('jwt', loginResult.token);
+
       onClose();
     } catch (error) {
-      console.error('登録エラー:', error);
+      console.error('エラー:', error);
       // TODO: エラーメッセージをユーザーに表示する
     }
   };

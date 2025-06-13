@@ -1,5 +1,6 @@
 'use client';
 
+import AddIcon from '@mui/icons-material/Add';
 import {
   Box,
   Button,
@@ -9,13 +10,39 @@ import {
   Typography,
 } from '@mui/material';
 import Link from 'next/link';
-import React from 'react';
+import { useEffect, useState } from 'react';
+
+import DashboardLayout from '@/components/DashboardLayout';
+import { getToken } from '@/utils/auth';
 
 export default function TopPage() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    setIsAuthenticated(!!getToken());
+  }, []);
+
+  if (isAuthenticated) {
+    return (
+      <DashboardLayout>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 3 }}>
+          <Button variant="contained" color="secondary" startIcon={<AddIcon />}>
+            作成
+          </Button>
+        </Box>
+        <Stack spacing={3}>
+          <Paper sx={{ p: 2, height: 200 }}>コンテンツ1</Paper>
+          <Paper sx={{ p: 2, height: 200 }}>コンテンツ2</Paper>
+          <Paper sx={{ p: 2, height: 200 }}>コンテンツ3</Paper>
+        </Stack>
+      </DashboardLayout>
+    );
+  }
+
   return (
     <Box
       sx={{
-        height: '91vh',
+        minHeight: '91vh',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
@@ -28,7 +55,7 @@ export default function TopPage() {
         sx={{
           position: 'absolute',
           inset: 0,
-          zIndex: -1,
+          zIndex: 0,
           '&::after': {
             content: '""',
             position: 'absolute',
@@ -41,11 +68,16 @@ export default function TopPage() {
           component="img"
           src="/top.jpg"
           alt="旅の風景"
-          sx={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          sx={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center',
+          }}
         />
       </Box>
 
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
         <Stack
           direction={{ xs: 'column', md: 'row' }}
           spacing={4}
@@ -57,8 +89,9 @@ export default function TopPage() {
               flexBasis: { md: '50%' },
               p: 4,
               textAlign: 'center',
-              backgroundColor: 'rgba(255 255 255 / 0.8)',
+              backgroundColor: 'rgba(255 255 255 / 0.9)',
               borderRadius: 2,
+              backdropFilter: 'blur(8px)',
             }}
           >
             <Typography
@@ -118,7 +151,7 @@ export default function TopPage() {
               sx={{
                 fontWeight: 500,
                 color: 'white',
-                textShadow: '1px 1px 2px rgba(0 0 0 / 0.8)',
+                textShadow: '2px 2px 4px rgba(0 0 0 / 0.8)',
                 fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
                 textAlign: { xs: 'center', md: 'right' },
               }}
@@ -133,7 +166,7 @@ export default function TopPage() {
                 color: 'white',
                 textAlign: 'center',
                 alignSelf: 'center',
-                textShadow: '1px 1px 2px rgba(0 0 0 / 0.8)',
+                textShadow: '2px 2px 4px rgba(0 0 0 / 0.8)',
               }}
             >
               あなたの心に残る旅の記憶を、大切な人と共有しましょう

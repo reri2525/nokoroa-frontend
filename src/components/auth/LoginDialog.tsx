@@ -42,7 +42,7 @@ export default function LoginDialog({ onClose }: LoginDialogProps) {
 
   const onSubmit = async (data: FormType) => {
     try {
-      const response = await fetch(`${API_URL}/users/login`, {
+      const response = await fetch(`${API_URL}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -59,7 +59,9 @@ export default function LoginDialog({ onClose }: LoginDialogProps) {
 
       const result = await response.json();
       console.log('ログイン成功:', result);
+      localStorage.setItem('jwt', result.token);
       onClose();
+      window.location.href = '/';
     } catch (error) {
       console.error('ログインエラー:', error);
     }

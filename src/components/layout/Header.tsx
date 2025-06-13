@@ -1,37 +1,35 @@
 'use client';
 
-import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import NextLink from 'next/link';
+import Link from 'next/link';
 import React from 'react';
 
 export default function Header() {
   return (
-    <AppBar
-      position="fixed"
-      elevation={0}
+    <Box
+      component="header"
       sx={{
-        height: '9vh',
-        justifyContent: 'center',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 1100,
         bgcolor: 'white',
-        color: 'primary.main',
         borderBottom: '1px solid',
         borderColor: 'grey.300',
       }}
     >
-      <Toolbar disableGutters sx={{ px: 3 }}>
+      <Toolbar disableGutters sx={{ px: 3, height: '9vh' }}>
         <Link
-          component={NextLink}
           href="/"
-          underline="none"
-          sx={{
+          style={{
             flexGrow: 1,
             display: 'block',
             cursor: 'pointer',
+            textDecoration: 'none',
           }}
         >
           <Typography
@@ -47,24 +45,28 @@ export default function Header() {
         </Link>
 
         <Box sx={{ display: 'flex', gap: 2 }}>
-          <Button
-            component={NextLink}
+          <Link
             href="/login"
-            variant="outlined"
-            color="inherit"
+            style={{ textDecoration: 'none' }}
+            scroll={false}
+            prefetch={false}
           >
-            ログイン
-          </Button>
-          <Button
-            component={NextLink}
+            <Button variant="outlined" color="inherit">
+              ログイン
+            </Button>
+          </Link>
+          <Link
             href="/signup"
-            variant="contained"
-            color="secondary"
+            style={{ textDecoration: 'none' }}
+            scroll={false}
+            prefetch={false}
           >
-            新規登録
-          </Button>
+            <Button variant="contained" color="secondary">
+              新規登録
+            </Button>
+          </Link>
         </Box>
       </Toolbar>
-    </AppBar>
+    </Box>
   );
 }
