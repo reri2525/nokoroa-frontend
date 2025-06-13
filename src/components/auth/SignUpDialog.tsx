@@ -18,6 +18,9 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+/* ------------------ 定数 ------------------ */
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 /* ------------------ スキーマ & 型 ------------------ */
 const schema = z
   .object({
@@ -51,9 +54,30 @@ export default function SignUpDialog({ onClose }: SignUpDialogProps) {
 
   /* ----- フォーム送信 ----- */
   const onSubmit = async (data: FormType) => {
-    await new Promise((r) => setTimeout(r, 1000));
-    console.log(data);
-    onClose();
+    try {
+      const response = await fetch(`${API_URL}/users/signup`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          password: data.password,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('登録に失敗しました');
+      }
+
+      const result = await response.json();
+      console.log('登録成功:', result);
+      onClose();
+    } catch (error) {
+      console.error('登録エラー:', error);
+      // TODO: エラーメッセージをユーザーに表示する
+    }
   };
 
   /* ----- リンククリック時：まず閉じて、その後に遷移 ----- */

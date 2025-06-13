@@ -36,21 +36,23 @@ export default function Header() {
         >
           <Typography
             variant="h5"
-            component="span"
             sx={{
-              fontFamily: '"Yu Mincho", "游明朝", YuMincho, serif',
               fontWeight: 500,
-              letterSpacing: '0.05em',
-              fontSize: '1.5rem',
               color: 'black',
+              textDecoration: 'none',
             }}
           >
-            TabiMemory
+            Nokoroa
           </Typography>
         </Link>
 
         <Box sx={{ display: 'flex', gap: 2 }}>
-          <Button variant="outlined" color="inherit">
+          <Button
+            component={NextLink}
+            href="/login"
+            variant="outlined"
+            color="inherit"
+          >
             ログイン
           </Button>
           <Button

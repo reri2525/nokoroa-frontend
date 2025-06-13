@@ -52,7 +52,7 @@ export default function Footer() {
         alignItems="center"
       >
         <Typography variant="body2" color="white" sx={{ fontSize: '0.75rem' }}>
-          © 2025 TabiMemory
+          © 2025 Nokoroa
         </Typography>
 
         <IconButton

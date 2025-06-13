@@ -2,13 +2,13 @@
 
 import { Box, Container } from '@mui/material';
 
-import SignUpDialog from '@/components/auth/SignUpDialog';
+import LoginDialog from '@/components/auth/LoginDialog';
 
-export default function SignupPage() {
+export default function LoginPage() {
   return (
     <Container maxWidth="sm" sx={{ py: 6 }}>
       <Box boxShadow={3} borderRadius={2} overflow="hidden">
-        <SignUpDialog
+        <LoginDialog
           onClose={() => {
             if (typeof window !== 'undefined') {
               window.location.href = '/';

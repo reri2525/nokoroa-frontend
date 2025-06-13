@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Container, List, ListItem, Typography } from '@mui/material';
+import { Box, Container, Paper, Typography } from '@mui/material';
 import React from 'react';
 
 export default function Privacy() {
@@ -8,150 +8,114 @@ export default function Privacy() {
     <Box
       component="main"
       sx={{
-        bgcolor: '#F7FAFC', // ← 背景色をライトグレー (#F7FAFC) に変更
+        bgcolor: '#F7FAFC',
         color: 'black',
         minHeight: '100vh',
-        mt: '9vh', // 固定ヘッダー（約9vh）分の余白
+        mt: '9vh',
       }}
     >
       <Container maxWidth="md">
-        <Typography
-          variant="h4"
-          component="h1"
-          align="center"
-          gutterBottom
-          sx={{ pt: 3 }}
-        >
-          プライバシーポリシー
-        </Typography>
-
-        {/* 導入文 */}
-        <Typography
+        <Paper
+          elevation={0}
           sx={{
-            pb: 3,
-            borderBottom: '1px solid',
-            borderColor: 'grey.200',
+            p: 4,
+            my: 4,
+            bgcolor: 'white',
+            borderRadius: 2,
+            boxShadow: '0 4px 6px rgba(0 0 0 / 0.1)',
           }}
         >
-          TabiMemory（以下、「当サービス」）は、ユーザーのプライバシーを尊重し、
-          個人情報を適切に取り扱うことを社会的責務と認識しています。
-          本ポリシーでは、当サービスにおけるユーザー情報の取得、利用、共有について説明します。
-        </Typography>
+          <Typography
+            variant="h4"
+            component="h1"
+            gutterBottom
+            sx={{
+              fontWeight: 500,
+              mb: 4,
+            }}
+          >
+            プライバシーポリシー
+          </Typography>
 
-        {/* 第1条〜第6条 */}
-        <List
-          component="ol"
-          disablePadding
-          sx={{ listStyleType: 'decimal', pl: 2 }}
-        >
-          {/* 第1条 */}
-          <Section index={1} title="取得する情報">
-            <List disablePadding sx={{ listStyleType: 'disc', pl: 2 }}>
-              <ListItem sx={{ display: 'list-item' }}>
-                登録時に入力された氏名、メールアドレスなどのアカウント情報
-              </ListItem>
-              <ListItem sx={{ display: 'list-item' }}>
-                旅の記録投稿時にアップロードされた写真・位置情報・コメント
-              </ListItem>
-              <ListItem sx={{ display: 'list-item' }}>
-                サービス改善を目的としたアクセスログ・クッキー情報
-              </ListItem>
-            </List>
+          <Typography variant="body1" sx={{ mb: 4 }}>
+            本プライバシーポリシーは、Nokoroa（以下「当サービス」）における個人情報の取り扱いについて定めるものです。
+          </Typography>
+
+          <Section title="第1条（個人情報の収集）">
+            当サービスは、以下の情報を収集する場合があります：
+            <Box component="ul" sx={{ pl: 2, mt: 1 }}>
+              <li>メールアドレス</li>
+              <li>ユーザー名</li>
+              <li>プロフィール画像</li>
+              <li>旅の記録に関する情報</li>
+            </Box>
           </Section>
 
-          {/* 第2条 */}
-          <Section index={2} title="情報の利用目的">
-            <List disablePadding sx={{ listStyleType: 'disc', pl: 2 }}>
-              <ListItem sx={{ display: 'list-item' }}>
-                当サービスの提供および機能改善
-              </ListItem>
-              <ListItem sx={{ display: 'list-item' }}>
-                不正利用の防止・セキュリティ確保
-              </ListItem>
-              <ListItem sx={{ display: 'list-item' }}>
-                新機能・キャンペーン情報などのご案内（許可を得た場合）
-              </ListItem>
-            </List>
+          <Section title="第2条（個人情報の利用目的）">
+            当サービスは、収集した個人情報を以下の目的で利用します：
+            <Box component="ul" sx={{ pl: 2, mt: 1 }}>
+              <li>サービスの提供・運営</li>
+              <li>ユーザーサポート</li>
+              <li>サービスの改善</li>
+              <li>セキュリティの確保</li>
+            </Box>
           </Section>
 
-          {/* 第3条 */}
-          <Section index={3} title="第三者提供">
-            <List disablePadding sx={{ listStyleType: 'disc', pl: 2 }}>
-              <ListItem sx={{ display: 'list-item' }}>
-                取得した個人情報は、法令に基づく場合を除き、
-                ユーザーの同意なく第三者に開示・提供することはありません。
-              </ListItem>
-            </List>
+          <Section title="第3条（個人情報の管理）">
+            当サービスは、個人情報の漏洩、滅失、毀損を防止するため、適切なセキュリティ対策を実施します。
           </Section>
 
-          {/* 第4条 */}
-          <Section index={4} title="セキュリティ">
-            <List disablePadding sx={{ listStyleType: 'disc', pl: 2 }}>
-              <ListItem sx={{ display: 'list-item' }}>
-                当サービスは、個人情報への不正アクセス、紛失、破壊、改ざん及び漏えい等を防止するために、
-                適切なセキュリティ対策を実施します。
-              </ListItem>
-            </List>
+          <Section title="第4条（個人情報の第三者提供）">
+            当サービスは、以下の場合を除き、個人情報を第三者に提供することはありません：
+            <Box component="ul" sx={{ pl: 2, mt: 1 }}>
+              <li>法令に基づく場合</li>
+              <li>ユーザーの同意がある場合</li>
+              <li>統計的な情報として、個人を特定できない形式で提供する場合</li>
+            </Box>
           </Section>
 
-          {/* 第5条 */}
-          <Section index={5} title="プライバシーポリシーの変更">
-            <List disablePadding sx={{ listStyleType: 'disc', pl: 2 }}>
-              <ListItem sx={{ display: 'list-item' }}>
-                本ポリシーの内容は、必要に応じて変更することがあります。
-                変更後の内容は当ページに掲載した時点で効力を生じます。
-              </ListItem>
-            </List>
+          <Section title="第5条（個人情報の開示・訂正・削除）">
+            ユーザーは、当サービスが保有する個人情報の開示、訂正、削除を請求することができます。
+            請求があった場合は、合理的な範囲で対応いたします。
           </Section>
 
-          {/* 第6条 */}
-          <Section index={6} title="お問い合わせ">
-            <List disablePadding sx={{ listStyleType: 'disc', pl: 2 }}>
-              <ListItem sx={{ display: 'list-item' }}>
-                プライバシーポリシーに関するお問い合わせは、
-                <Box component="span" sx={{ fontWeight: 'bold' }}>
-                  support.tabimemory@gmail.com
-                </Box>{' '}
-                までご連絡ください。
-              </ListItem>
-            </List>
+          <Section title="第6条（プライバシーポリシーの変更）">
+            当サービスは、必要に応じて本プライバシーポリシーを変更することがあります。
+            変更があった場合は、当サービス上で通知します。
           </Section>
-        </List>
+
+          <Typography variant="body2" sx={{ mt: 4, color: 'text.secondary' }}>
+            制定日：2025年6月8日
+          </Typography>
+        </Paper>
       </Container>
     </Box>
   );
 }
 
-/* -------------------------------------------------------------------------- */
-/*                               補助コンポーネント                            */
-/* -------------------------------------------------------------------------- */
-
 function Section({
-  index,
   title,
   children,
 }: {
-  index: number;
   title: string;
   children: React.ReactNode;
 }) {
   return (
-    <ListItem
-      component="li"
-      sx={{
-        listStyleType: 'none',
-        display: 'block',
-        mt: 3,
-        pb: 3,
-        borderBottom: '1px solid',
-        borderColor: 'grey.200',
-        '&:last-of-type': { borderBottom: 'none' },
-      }}
-    >
-      <Typography variant="h5" component="h2" gutterBottom>
-        {`第${index}条（${title}）`}
+    <Box sx={{ mb: 4 }}>
+      <Typography
+        variant="h6"
+        component="h2"
+        gutterBottom
+        sx={{
+          fontWeight: 500,
+          color: 'primary.main',
+        }}
+      >
+        {title}
       </Typography>
-      {children}
-    </ListItem>
+      <Typography variant="body1" component="div">
+        {children}
+      </Typography>
+    </Box>
   );
 }

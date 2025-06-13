@@ -66,17 +66,16 @@ export default function TopPage() {
               component="h1"
               gutterBottom
               sx={{
-                fontFamily: '"Yu Mincho","游明朝",YuMincho,serif',
                 fontWeight: 500,
                 mb: 2,
               }}
             >
-              TabiMemory
+              Nokoroa
             </Typography>
 
             <Typography variant="body1">
-              旅の思い出を記録し、大切な人と共有するアプリ。
-              あなたの素敵な旅の体験をカタチにしましょう。
+              心に残る旅の思い出を、大切な人と共有するアプリ。
+              あなたの心に刻まれた旅の体験を、永遠の記録に。
             </Typography>
 
             <Box sx={{ mt: 4 }}>
@@ -91,7 +90,14 @@ export default function TopPage() {
               >
                 アカウント作成
               </Button>
-              <Button variant="outlined" color="primary" size="large">
+              <Button
+                component={Link}
+                href="/about"
+                scroll={false}
+                variant="outlined"
+                color="primary"
+                size="large"
+              >
                 詳しく見る
               </Button>
             </Box>
@@ -110,28 +116,27 @@ export default function TopPage() {
             <Typography
               variant="h2"
               sx={{
-                fontFamily: '"Yu Mincho","游明朝",YuMincho,serif',
                 fontWeight: 500,
-                color: '#333',
-                textShadow: '1px 1px 2px rgba(255 255 255 / 0.8)',
+                color: 'white',
+                textShadow: '1px 1px 2px rgba(0 0 0 / 0.8)',
                 fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
                 textAlign: { xs: 'center', md: 'right' },
               }}
             >
-              思い出を共有しよう。
+              旅の思い出を、永遠に
             </Typography>
 
             <Typography
               variant="h5"
               sx={{
                 mt: 2,
-                fontFamily: '"Yu Mincho","游明朝",YuMincho,serif',
-                color: '#555',
+                color: 'white',
                 textAlign: 'center',
                 alignSelf: 'center',
+                textShadow: '1px 1px 2px rgba(0 0 0 / 0.8)',
               }}
             >
-              旅の軌跡を、大切な人と。
+              あなたの心に残る旅の記憶を、大切な人と共有しましょう
             </Typography>
           </Box>
         </Stack>
