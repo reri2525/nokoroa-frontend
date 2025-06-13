@@ -1,6 +1,5 @@
 'use client';
 
-import AddIcon from '@mui/icons-material/Add';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import {
@@ -32,25 +31,6 @@ export default function TopPage() {
   if (isAuthenticated) {
     return (
       <DashboardLayout>
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 3 }}>
-          <Button
-            variant="contained"
-            color="secondary"
-            startIcon={<AddIcon />}
-            sx={{
-              borderRadius: 2,
-              px: 3,
-              py: 1,
-              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-              '&:hover': {
-                boxShadow: '0 6px 8px rgba(0, 0, 0, 0.15)',
-              },
-            }}
-          >
-            新規投稿
-          </Button>
-        </Box>
-
         <Box
           sx={{
             display: 'grid',
@@ -130,7 +110,6 @@ export default function TopPage() {
                         icon={<LocationOnIcon />}
                         label="沖縄"
                         size="small"
-                        clickable={false}
                         sx={{
                           bgcolor: 'primary.light',
                           color: 'primary.contrastText',
@@ -139,7 +118,6 @@ export default function TopPage() {
                       <Chip
                         label="#絶景"
                         size="small"
-                        clickable={false}
                         sx={{
                           bgcolor: 'secondary.light',
                           color: 'secondary.contrastText',
@@ -148,7 +126,6 @@ export default function TopPage() {
                       <Chip
                         label="#グルメ"
                         size="small"
-                        clickable={false}
                         sx={{
                           bgcolor: 'info.light',
                           color: 'info.contrastText',

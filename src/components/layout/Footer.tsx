@@ -20,8 +20,10 @@ export default function Footer() {
         mt: 'auto',
         width: '100%',
         py: 3,
-        backgroundColor: 'rgba(0, 0, 0, 0.8)',
-        color: 'white',
+        backgroundColor: 'white',
+        color: 'text.primary',
+        borderTop: '1px solid',
+        borderColor: 'grey.300',
       }}
     >
       <Container maxWidth="lg">
@@ -37,7 +39,7 @@ export default function Footer() {
                 sx={{
                   width: '1px',
                   height: '1rem',
-                  bgcolor: 'rgba(255, 255, 255, 0.3)',
+                  bgcolor: 'divider',
                 }}
               />
             }
@@ -50,7 +52,7 @@ export default function Footer() {
               sx={{
                 fontSize: '0.875rem',
                 '&:hover': {
-                  color: 'primary.light',
+                  color: 'primary.main',
                 },
               }}
             >
@@ -65,7 +67,7 @@ export default function Footer() {
               sx={{
                 fontSize: '0.875rem',
                 '&:hover': {
-                  color: 'primary.light',
+                  color: 'primary.main',
                 },
               }}
             >
@@ -83,7 +85,7 @@ export default function Footer() {
               variant="body2"
               sx={{
                 fontSize: '0.75rem',
-                color: 'rgba(255, 255, 255, 0.7)',
+                color: 'text.secondary',
               }}
             >
               © 2025 Nokoroa
@@ -99,7 +101,7 @@ export default function Footer() {
               sx={{
                 p: 0.5,
                 '&:hover': {
-                  color: 'primary.light',
+                  color: 'primary.main',
                 },
               }}
             >

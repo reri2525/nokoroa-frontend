@@ -1,13 +1,22 @@
 'use client';
 
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AddIcon from '@mui/icons-material/Add';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
+import { useAuth } from '@/providers/AuthProvider';
+
 export default function Header() {
+  const router = useRouter();
+  const { isAuthenticated } = useAuth();
+
   return (
     <Box
       component="header"
@@ -16,7 +25,7 @@ export default function Header() {
         top: 0,
         left: 0,
         right: 0,
-        zIndex: 1100,
+        zIndex: 1200,
         bgcolor: 'white',
         borderBottom: '1px solid',
         borderColor: 'grey.300',
@@ -44,28 +53,60 @@ export default function Header() {
           </Typography>
         </Link>
 
-        <Box sx={{ display: 'flex', gap: 2 }}>
-          <Link
-            href="/login"
-            style={{ textDecoration: 'none' }}
-            scroll={false}
-            prefetch={false}
-          >
-            <Button variant="outlined" color="inherit">
-              ログイン
+        {isAuthenticated ? (
+          <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+            <Button
+              variant="contained"
+              color="secondary"
+              startIcon={<AddIcon />}
+              onClick={() => router.push('/post/new')}
+              sx={{
+                borderRadius: 2,
+                px: 3,
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                '&:hover': {
+                  boxShadow: '0 6px 8px rgba(0, 0, 0, 0.15)',
+                },
+              }}
+            >
+              投稿
             </Button>
-          </Link>
-          <Link
-            href="/signup"
-            style={{ textDecoration: 'none' }}
-            scroll={false}
-            prefetch={false}
-          >
-            <Button variant="contained" color="secondary">
-              新規登録
-            </Button>
-          </Link>
-        </Box>
+            <IconButton
+              onClick={() => router.push('/profile')}
+              sx={{
+                color: 'text.primary',
+                '&:hover': {
+                  color: 'primary.main',
+                },
+              }}
+            >
+              <AccountCircleIcon />
+            </IconButton>
+          </Box>
+        ) : (
+          <Box sx={{ display: 'flex', gap: 2 }}>
+            <Link
+              href="/login"
+              style={{ textDecoration: 'none' }}
+              scroll={false}
+              prefetch={false}
+            >
+              <Button variant="outlined" color="inherit">
+                ログイン
+              </Button>
+            </Link>
+            <Link
+              href="/signup"
+              style={{ textDecoration: 'none' }}
+              scroll={false}
+              prefetch={false}
+            >
+              <Button variant="contained" color="secondary">
+                新規登録
+              </Button>
+            </Link>
+          </Box>
+        )}
       </Toolbar>
     </Box>
   );
