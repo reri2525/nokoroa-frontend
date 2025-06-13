@@ -3,7 +3,9 @@
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import HomeIcon from '@mui/icons-material/Home';
 import TagIcon from '@mui/icons-material/LocalOffer';
+import MapIcon from '@mui/icons-material/Map';
 import PersonIcon from '@mui/icons-material/Person';
 import SearchIcon from '@mui/icons-material/Search';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -66,6 +68,9 @@ export default function DashboardLayout({
             height: 'calc(100vh - 9vh)',
             display: 'flex',
             flexDirection: 'column',
+            bgcolor: 'rgba(255, 255, 255, 0.9)',
+            backdropFilter: 'blur(8px)',
+            borderRight: '1px solid rgba(0, 0, 0, 0.1)',
           },
         }}
       >
@@ -73,9 +78,19 @@ export default function DashboardLayout({
           <List>
             {[
               {
+                text: 'ホーム',
+                icon: <HomeIcon />,
+                onClick: () => router.push('/'),
+              },
+              {
                 text: '検索',
                 icon: <SearchIcon />,
                 onClick: () => router.push('/'),
+              },
+              {
+                text: '地図から探す',
+                icon: <MapIcon />,
+                onClick: () => router.push('/map'),
               },
               {
                 text: 'お気に入り',
@@ -92,6 +107,18 @@ export default function DashboardLayout({
                 icon: <PersonIcon />,
                 onClick: () => router.push('/'),
               },
+            ].map((item) => (
+              <ListItem key={item.text} disablePadding>
+                <ListItemButton onClick={item.onClick}>
+                  <ListItemIcon>{item.icon}</ListItemIcon>
+                  <ListItemText primary={item.text} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          <List>
+            {[
               {
                 text: '設定',
                 icon: <SettingsIcon />,
@@ -114,7 +141,6 @@ export default function DashboardLayout({
         </Box>
 
         <Box sx={{ p: 2, mt: 'auto' }}>
-          <Divider sx={{ mb: 2 }} />
           <Stack spacing={2}>
             <Stack
               direction="row"

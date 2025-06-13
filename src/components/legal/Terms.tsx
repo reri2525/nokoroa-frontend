@@ -3,15 +3,31 @@
 import { Box, Container, Paper, Typography } from '@mui/material';
 import React from 'react';
 
+import { useAuth } from '@/providers/AuthProvider';
+
 export default function Terms() {
+  const { isAuthenticated } = useAuth();
+
   return (
     <Box
       component="main"
       sx={{
         bgcolor: '#F7FAFC',
         color: 'black',
-        minHeight: '100vh',
+        minHeight: isAuthenticated ? 'calc(100vh - 9vh)' : '100vh',
         mt: '9vh',
+        pb: isAuthenticated ? 0 : 4,
+        position: 'relative',
+        '&::after': {
+          content: '""',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          bgcolor: '#F7FAFC',
+          zIndex: -1,
+        },
       }}
     >
       <Container maxWidth="md">
