@@ -2,6 +2,8 @@
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AddIcon from '@mui/icons-material/Add';
+import MenuIcon from '@mui/icons-material/Menu';
+import { useMediaQuery, useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
@@ -13,9 +15,15 @@ import React from 'react';
 
 import { useAuth } from '@/providers/AuthProvider';
 
-export default function Header() {
+interface HeaderProps {
+  onMobileToggle?: () => void;
+}
+
+export default function Header({ onMobileToggle }: HeaderProps) {
   const router = useRouter();
   const { isAuthenticated } = useAuth();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <Box
@@ -32,6 +40,19 @@ export default function Header() {
       }}
     >
       <Toolbar disableGutters sx={{ px: 3, height: '9vh' }}>
+        {/* ハンバーガーメニューボタン（モバイルのみ） */}
+        {isMobile && (
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={onMobileToggle}
+            sx={{ mr: 2 }}
+          >
+            <MenuIcon />
+          </IconButton>
+        )}
+
         <Link
           href="/"
           style={{
