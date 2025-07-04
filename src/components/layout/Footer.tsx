@@ -20,10 +20,10 @@ export default function Footer() {
         mt: 'auto',
         width: '100%',
         py: 3,
-        backgroundColor: 'white',
+        backgroundColor: 'background.paper',
         color: 'text.primary',
         borderTop: '1px solid',
-        borderColor: 'grey.300',
+        borderColor: 'divider',
       }}
     >
       <Container maxWidth="lg">

@@ -26,9 +26,9 @@ export default function Header() {
         left: 0,
         right: 0,
         zIndex: 1200,
-        bgcolor: 'white',
+        bgcolor: 'background.paper',
         borderBottom: '1px solid',
-        borderColor: 'grey.300',
+        borderColor: 'divider',
       }}
     >
       <Toolbar disableGutters sx={{ px: 3, height: '9vh' }}>
@@ -45,7 +45,7 @@ export default function Header() {
             variant="h5"
             sx={{
               fontWeight: 500,
-              color: 'black',
+              color: 'text.primary',
               textDecoration: 'none',
             }}
           >
@@ -57,14 +57,16 @@ export default function Header() {
           <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
             <Button
               variant="contained"
-              color="secondary"
               startIcon={<AddIcon />}
               onClick={() => router.push('/post/new')}
               sx={{
                 borderRadius: 2,
                 px: 3,
+                bgcolor: '#9c27b0',
+                color: 'white',
                 boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
                 '&:hover': {
+                  bgcolor: '#7b1fa2',
                   boxShadow: '0 6px 8px rgba(0, 0, 0, 0.15)',
                 },
               }}
