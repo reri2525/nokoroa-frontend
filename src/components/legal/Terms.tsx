@@ -1,195 +1,150 @@
 'use client';
 
-import { Box, Container, List, ListItem, Typography } from '@mui/material';
+import { Box, Container, Paper, Typography } from '@mui/material';
 import React from 'react';
 
+import { useAuth } from '@/providers/AuthProvider';
+
 export default function Terms() {
+  const { isAuthenticated } = useAuth();
+
   return (
     <Box
       component="main"
       sx={{
         bgcolor: '#F7FAFC',
         color: 'black',
-        minHeight: '100vh',
-        mt: '9vh', // 固定ヘッダー分
+        minHeight: isAuthenticated ? 'calc(100vh - 9vh)' : '100vh',
+        mt: '9vh',
+        pb: isAuthenticated ? 0 : 4,
+        position: 'relative',
+        '&::after': {
+          content: '""',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          bgcolor: '#F7FAFC',
+          zIndex: -1,
+        },
       }}
     >
       <Container maxWidth="md">
-        {/* ページタイトル */}
-        <Typography variant="h4" component="h1" align="center" gutterBottom>
-          利用規約
-        </Typography>
-
-        {/* 導入文 */}
-        <Typography
+        <Paper
+          elevation={0}
           sx={{
-            pb: 3,
-            borderBottom: '1px solid',
-            borderColor: 'grey.200',
+            p: 4,
+            my: 4,
+            bgcolor: 'white',
+            borderRadius: 2,
+            boxShadow: '0 4px 6px rgba(0 0 0 / 0.1)',
           }}
         >
-          本利用規約（以下、「本規約」）は、TabiMemory（以下、「当サービス」）の
-          提供条件および当サービスを利用する際の権利・義務関係を定めるものです。
-          ご利用前に必ず全文お読みいただき、同意の上でご利用ください。
-        </Typography>
+          <Typography
+            variant="h4"
+            component="h1"
+            gutterBottom
+            sx={{
+              fontWeight: 500,
+              mb: 4,
+            }}
+          >
+            利用規約
+          </Typography>
 
-        {/* 第1条〜第8条 例示 */}
-        <List
-          component="ol"
-          disablePadding
-          sx={{ listStyleType: 'decimal', pl: 2 }}
-        >
-          <Section index={1} title="適用">
-            <List disablePadding sx={{ listStyleType: 'disc', pl: 2 }}>
-              <ListItem sx={{ display: 'list-item' }}>
-                本規約は、当サービスの利用に関する一切の関係に適用されます。
-              </ListItem>
-              <ListItem sx={{ display: 'list-item' }}>
-                当サービスがウェブサイト上で掲載する個別規定は、本規約の一部を構成するものとします。
-              </ListItem>
-            </List>
+          <Typography variant="body1" sx={{ mb: 4 }}>
+            本規約は、Nokoroa（以下「当サービス」）の利用条件を定めるものです。
+            ユーザーは本規約に同意の上、当サービスを利用するものとします。
+          </Typography>
+
+          <Section title="第1条（適用）">
+            本規約は、当サービスの利用に関する一切の関係に適用されるものとします。
           </Section>
 
-          <Section index={2} title="登録">
-            <List disablePadding sx={{ listStyleType: 'disc', pl: 2 }}>
-              <ListItem sx={{ display: 'list-item' }}>
-                利用希望者は、本規約に同意の上、所定の方法で登録申請を行うものとします。
-              </ListItem>
-              <ListItem sx={{ display: 'list-item' }}>
-                当サービスは、登録希望者に以下の事由があると判断した場合、
-                登録を拒否することがあります。
-                <List disablePadding sx={{ listStyleType: 'circle', pl: 4 }}>
-                  <ListItem sx={{ display: 'list-item' }}>
-                    登録申請に虚偽の事項を届け出た場合
-                  </ListItem>
-                  <ListItem sx={{ display: 'list-item' }}>
-                    本規約に違反したことがある者からの申請である場合
-                  </ListItem>
-                </List>
-              </ListItem>
-            </List>
+          <Section title="第2条（利用登録）">
+            当サービスの利用を希望する者は、本規約に同意の上、当サービスが定める方法により利用登録を申請し、
+            当サービスがこれを承認することによって利用登録が完了するものとします。
           </Section>
 
-          <Section index={3} title="ユーザーIDおよびパスワードの管理">
-            <List disablePadding sx={{ listStyleType: 'disc', pl: 2 }}>
-              <ListItem sx={{ display: 'list-item' }}>
-                ユーザーは、自己の責任においてユーザーIDおよびパスワードを適切に
-                管理・保管するものとします。
-              </ListItem>
-              <ListItem sx={{ display: 'list-item' }}>
-                ユーザーIDとパスワードの組み合わせが登録情報と一致してログインされた場合、
-                当該ユーザー自身による利用とみなします。
-              </ListItem>
-            </List>
+          <Section title="第3条（禁止事項）">
+            ユーザーは、以下の行為をしてはなりません：
+            <Box component="ul" sx={{ pl: 2, mt: 1 }}>
+              <li>法令または公序良俗に違反する行為</li>
+              <li>当サービスの運営を妨害する行為</li>
+              <li>他のユーザーに迷惑をかける行為</li>
+              <li>当サービスの知的財産権を侵害する行為</li>
+            </Box>
           </Section>
 
-          <Section index={4} title="禁止事項">
-            <List disablePadding sx={{ listStyleType: 'disc', pl: 2 }}>
-              <ListItem sx={{ display: 'list-item' }}>
-                法令または公序良俗に反する行為
-              </ListItem>
-              <ListItem sx={{ display: 'list-item' }}>
-                犯罪行為に関連する行為
-              </ListItem>
-              <ListItem sx={{ display: 'list-item' }}>
-                当サービスのサーバーまたはネットワークの機能を破壊・妨害する行為
-              </ListItem>
-              <ListItem sx={{ display: 'list-item' }}>
-                他のユーザーに関する個人情報等を収集または蓄積する行為
-              </ListItem>
-            </List>
+          <Section title="第4条（当サービスの提供の停止等）">
+            当サービスは、以下のいずれかの事由があると判断した場合、ユーザーに事前に通知することなく
+            当サービスの全部または一部の提供を停止または中断することができるものとします：
+            <Box component="ul" sx={{ pl: 2, mt: 1 }}>
+              <li>
+                当サービスにかかるコンピュータシステムの保守点検または更新を行う場合
+              </li>
+              <li>
+                地震、落雷、火災、停電または天災などの不可抗力により、当サービスの提供が困難となった場合
+              </li>
+              <li>その他、当サービスが当サービスの提供が困難と判断した場合</li>
+            </Box>
           </Section>
 
-          <Section index={5} title="当サービスの提供の停止等">
-            <List disablePadding sx={{ listStyleType: 'disc', pl: 2 }}>
-              <ListItem sx={{ display: 'list-item' }}>
-                当サービスは、以下のいずれかに該当する場合、ユーザーへ事前に通知することなく
-                当サービスの全部または一部の提供を停止または中断できるものとします。
-                <List disablePadding sx={{ listStyleType: 'circle', pl: 4 }}>
-                  <ListItem sx={{ display: 'list-item' }}>
-                    システムの保守点検・更新を行う場合
-                  </ListItem>
-                  <ListItem sx={{ display: 'list-item' }}>
-                    火災・停電・天災など不可抗力により提供が困難になった場合
-                  </ListItem>
-                </List>
-              </ListItem>
-            </List>
+          <Section title="第5条（免責事項）">
+            当サービスは、当サービスに関して、ユーザーと他のユーザーまたは第三者との間において生じた取引、
+            連絡または紛争等について一切責任を負いません。
           </Section>
 
-          <Section index={6} title="著作権">
-            <List disablePadding sx={{ listStyleType: 'disc', pl: 2 }}>
-              <ListItem sx={{ display: 'list-item' }}>
-                当サービスに掲載されている文章・画像・プログラム等の著作権は、
-                当サービスまたは正当な権利を有する第三者に帰属します。
-              </ListItem>
-              <ListItem sx={{ display: 'list-item' }}>
-                ユーザーは、当サービスのコンテンツを権利者の許諾なく
-                複製・転載・改変その他二次利用することを禁止します。
-              </ListItem>
-            </List>
+          <Section title="第6条（サービス内容の変更等）">
+            当サービスは、ユーザーに通知することなく、本サービス内容を変更しまたは本サービスの提供を中止することができるものとし、
+            これによってユーザーに生じた損害について一切の責任を負いません。
           </Section>
 
-          <Section index={7} title="免責事項">
-            <List disablePadding sx={{ listStyleType: 'disc', pl: 2 }}>
-              <ListItem sx={{ display: 'list-item' }}>
-                当サービスは、当サービスに起因してユーザーに生じた
-                あらゆる損害について一切の責任を負いません。
-              </ListItem>
-              <ListItem sx={{ display: 'list-item' }}>
-                当サービスに関し、ユーザーと他ユーザーまたは第三者との間で
-                生じた取引・連絡・紛争等については、ユーザーの責任で解決するものとします。
-              </ListItem>
-            </List>
+          <Section title="第7条（利用規約の変更）">
+            当サービスは、必要と判断した場合には、ユーザーに通知することなくいつでも本規約を変更することができるものとします。
+            なお、本規約の変更の際は、変更後の規約の内容を当サービス上に掲載するものとします。
           </Section>
 
-          <Section index={8} title="準拠法および裁判管轄">
-            <List disablePadding sx={{ listStyleType: 'disc', pl: 2 }}>
-              <ListItem sx={{ display: 'list-item' }}>
-                本規約の解釈にあたっては、日本法を準拠法とします。
-              </ListItem>
-              <ListItem sx={{ display: 'list-item' }}>
-                当サービスに関して紛争が生じた場合には、
-                当サービス所在地を管轄する裁判所を専属的合意管轄とします。
-              </ListItem>
-            </List>
+          <Section title="第8条（通知または連絡）">
+            ユーザーと当サービスとの間の通知または連絡は、当サービスの定める方法によって行うものとします。
+            当サービスは、ユーザーから、当サービスが定める方法に従った変更の届け出がない限り、
+            現在登録されている連絡先が有効なものとみなして当該連絡先へ通知または連絡を行い、
+            これらは、発信時にユーザーへ到達したものとみなします。
           </Section>
-        </List>
+
+          <Typography variant="body2" sx={{ mt: 4, color: 'text.secondary' }}>
+            制定日：2025年6月8日
+          </Typography>
+        </Paper>
       </Container>
     </Box>
   );
 }
 
-/* -------------------------------------------------------------------------- */
-/*                               補助コンポーネント                            */
-/* -------------------------------------------------------------------------- */
-
 function Section({
-  index,
   title,
   children,
 }: {
-  index: number;
   title: string;
   children: React.ReactNode;
 }) {
   return (
-    <ListItem
-      component="li"
-      sx={{
-        listStyleType: 'none',
-        display: 'block',
-        mt: 3,
-        pb: 3,
-        borderBottom: '1px solid',
-        borderColor: 'grey.200',
-        '&:last-of-type': { borderBottom: 'none' },
-      }}
-    >
-      <Typography variant="h5" component="h2" gutterBottom>
-        {`第${index}条（${title}）`}
+    <Box sx={{ mb: 4 }}>
+      <Typography
+        variant="h6"
+        component="h2"
+        gutterBottom
+        sx={{
+          fontWeight: 500,
+          color: 'primary.main',
+        }}
+      >
+        {title}
       </Typography>
-      {children}
-    </ListItem>
+      <Typography variant="body1" component="div">
+        {children}
+      </Typography>
+    </Box>
   );
 }
