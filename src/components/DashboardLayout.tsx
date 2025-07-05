@@ -304,7 +304,15 @@ export default function DashboardLayout({
   );
 
   return (
-    <Box sx={{ display: 'flex', pt: '9vh', minHeight: '100vh' }}>
+    <Box
+      sx={{
+        display: 'grid',
+        gridTemplateColumns: { xs: '1fr', md: `${drawerWidth}px 1fr` },
+        gridTemplateRows: '1fr',
+        minHeight: '100vh',
+        pt: '9vh',
+      }}
+    >
       {/* モバイル用の一時的なDrawer */}
       <Drawer
         variant="temporary"
@@ -327,33 +335,32 @@ export default function DashboardLayout({
         {drawerContent}
       </Drawer>
 
-      {/* デスクトップ用の固定Drawer */}
-      <Drawer
-        variant="permanent"
+      {/* デスクトップ用の固定サイドバー */}
+      <Box
         sx={{
           display: { xs: 'none', md: 'block' },
+          position: 'fixed',
+          top: '9vh',
+          left: 0,
           width: drawerWidth,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
-            width: drawerWidth,
-            boxSizing: 'border-box',
-            position: 'static',
-            bgcolor: 'background.paper',
-            borderRight: '1px solid',
-            borderColor: 'divider',
-            height: 'calc(100vh - 9vh)',
-          },
+          height: 'calc(100vh - 9vh)',
+          bgcolor: 'background.paper',
+          borderRight: '1px solid',
+          borderColor: 'divider',
+          zIndex: 1100,
+          overflow: 'auto',
         }}
       >
         {drawerContent}
-      </Drawer>
+      </Box>
 
       <Box
         component="main"
         sx={{
-          flexGrow: 1,
+          gridColumn: { xs: '1', md: '2' },
           p: 3,
           minHeight: 'calc(100vh - 9vh)',
+          overflow: 'auto',
         }}
       >
         {children}
