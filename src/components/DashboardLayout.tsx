@@ -304,7 +304,7 @@ export default function DashboardLayout({
   );
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', pt: '9vh', minHeight: '100vh' }}>
       {/* モバイル用の一時的なDrawer */}
       <Drawer
         variant="temporary"
@@ -337,13 +337,11 @@ export default function DashboardLayout({
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
-            position: 'fixed',
-            top: '9vh',
-            height: 'calc(100vh - 9vh)',
+            position: 'static',
             bgcolor: 'background.paper',
             borderRight: '1px solid',
             borderColor: 'divider',
-            zIndex: 1100,
+            height: 'calc(100vh - 9vh)',
           },
         }}
       >
@@ -355,9 +353,7 @@ export default function DashboardLayout({
         sx={{
           flexGrow: 1,
           p: 3,
-          ml: { xs: 0, md: `${drawerWidth}px` },
-          minHeight: '100vh',
-          pt: '9vh',
+          minHeight: 'calc(100vh - 9vh)',
         }}
       >
         {children}
