@@ -35,8 +35,8 @@ export default function TopPage() {
           gridTemplateColumns: {
             xs: '1fr',
             sm: 'repeat(2, 1fr)',
-            md: '1fr',
-            lg: 'repeat(2, 1fr)',
+            md: 'repeat(3, 1fr)',
+            lg: 'repeat(3, 1fr)',
             xl: 'repeat(3, 1fr)',
           },
           gap: 4,
