@@ -12,8 +12,7 @@ export default function Terms() {
     <Box
       component="main"
       sx={{
-        bgcolor: '#F7FAFC',
-        color: 'black',
+        bgcolor: 'background.default',
         minHeight: isAuthenticated ? 'calc(100vh - 9vh)' : '100vh',
         mt: '9vh',
         pb: isAuthenticated ? 0 : 4,
@@ -25,7 +24,7 @@ export default function Terms() {
           left: 0,
           right: 0,
           bottom: 0,
-          bgcolor: '#F7FAFC',
+          bgcolor: 'background.default',
           zIndex: -1,
         },
       }}
@@ -36,7 +35,7 @@ export default function Terms() {
           sx={{
             p: 4,
             my: 4,
-            bgcolor: 'white',
+            bgcolor: 'background.paper',
             borderRadius: 2,
             boxShadow: '0 4px 6px rgba(0 0 0 / 0.1)',
           }}
@@ -48,12 +47,13 @@ export default function Terms() {
             sx={{
               fontWeight: 500,
               mb: 4,
+              color: 'text.primary',
             }}
           >
             利用規約
           </Typography>
 
-          <Typography variant="body1" sx={{ mb: 4 }}>
+          <Typography variant="body1" sx={{ mb: 4, color: 'text.primary' }}>
             本規約は、Nokoroa（以下「当サービス」）の利用条件を定めるものです。
             ユーザーは本規約に同意の上、当サービスを利用するものとします。
           </Typography>
@@ -142,7 +142,11 @@ function Section({
       >
         {title}
       </Typography>
-      <Typography variant="body1" component="div">
+      <Typography
+        variant="body1"
+        component="div"
+        sx={{ color: 'text.primary' }}
+      >
         {children}
       </Typography>
     </Box>

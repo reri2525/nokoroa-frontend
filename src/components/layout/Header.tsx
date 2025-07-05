@@ -114,7 +114,21 @@ export default function Header({ onMobileToggle }: HeaderProps) {
               scroll={false}
               prefetch={false}
             >
-              <Button variant="outlined" color="inherit">
+              <Button
+                variant="outlined"
+                sx={{
+                  borderColor: 'primary.main',
+                  color: 'primary.main',
+                  borderRadius: 2,
+                  px: 3,
+                  fontWeight: 500,
+                  '&:hover': {
+                    borderColor: 'primary.dark',
+                    bgcolor: 'primary.main',
+                    color: 'white',
+                  },
+                }}
+              >
                 ログイン
               </Button>
             </Link>
@@ -124,7 +138,21 @@ export default function Header({ onMobileToggle }: HeaderProps) {
               scroll={false}
               prefetch={false}
             >
-              <Button variant="contained" color="secondary">
+              <Button
+                variant="contained"
+                sx={{
+                  bgcolor: '#9c27b0',
+                  color: 'white',
+                  borderRadius: 2,
+                  px: 3,
+                  fontWeight: 500,
+                  boxShadow: '0 4px 6px rgba(156, 39, 176, 0.3)',
+                  '&:hover': {
+                    bgcolor: '#7b1fa2',
+                    boxShadow: '0 6px 8px rgba(156, 39, 176, 0.4)',
+                  },
+                }}
+              >
                 新規登録
               </Button>
             </Link>

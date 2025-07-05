@@ -11,8 +11,7 @@ export default function Privacy() {
     <Box
       component="main"
       sx={{
-        bgcolor: '#F7FAFC',
-        color: 'black',
+        bgcolor: 'background.default',
         minHeight: isAuthenticated ? 'calc(100vh - 9vh)' : '100vh',
         mt: '9vh',
         pb: isAuthenticated ? 0 : 4,
@@ -24,7 +23,7 @@ export default function Privacy() {
           left: 0,
           right: 0,
           bottom: 0,
-          bgcolor: '#F7FAFC',
+          bgcolor: 'background.default',
           zIndex: -1,
         },
       }}
@@ -35,7 +34,7 @@ export default function Privacy() {
           sx={{
             p: 4,
             my: 4,
-            bgcolor: 'white',
+            bgcolor: 'background.paper',
             borderRadius: 2,
             boxShadow: '0 4px 6px rgba(0 0 0 / 0.1)',
           }}
@@ -47,12 +46,13 @@ export default function Privacy() {
             sx={{
               fontWeight: 500,
               mb: 4,
+              color: 'text.primary',
             }}
           >
             プライバシーポリシー
           </Typography>
 
-          <Typography variant="body1" sx={{ mb: 4 }}>
+          <Typography variant="body1" sx={{ mb: 4, color: 'text.primary' }}>
             本プライバシーポリシーは、Nokoroa（以下「当サービス」）における個人情報の取り扱いについて定めるものです。
           </Typography>
 
@@ -128,7 +128,11 @@ function Section({
       >
         {title}
       </Typography>
-      <Typography variant="body1" component="div">
+      <Typography
+        variant="body1"
+        component="div"
+        sx={{ color: 'text.primary' }}
+      >
         {children}
       </Typography>
     </Box>

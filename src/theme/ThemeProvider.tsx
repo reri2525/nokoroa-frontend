@@ -28,8 +28,8 @@ export default function CustomThemeProvider({
             paper: prefersDarkMode ? '#1a1a1a' : '#ffffff',
           },
           text: {
-            primary: prefersDarkMode ? '#ededed' : '#171717',
-            secondary: prefersDarkMode ? '#b0b0b0' : '#666666',
+            primary: prefersDarkMode ? '#ffffff' : '#171717',
+            secondary: prefersDarkMode ? '#cccccc' : '#666666',
           },
         },
         components: {
@@ -64,4 +64,4 @@ export default function CustomThemeProvider({
   );
 
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
-} 
+}

@@ -197,7 +197,7 @@ export default function TopPage() {
             content: '""',
             position: 'absolute',
             inset: 0,
-            backgroundColor: 'rgba(255 255 255 / 0.3)',
+            backgroundColor: 'rgba(0, 0, 0, 0.05)',
           },
         }}
       >
@@ -226,9 +226,20 @@ export default function TopPage() {
               flexBasis: { md: '50%' },
               p: 4,
               textAlign: 'center',
-              backgroundColor: 'rgba(255 255 255 / 0.9)',
-              borderRadius: 2,
-              backdropFilter: 'blur(8px)',
+              backgroundColor: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? 'rgba(26, 26, 26, 0.85)'
+                  : 'rgba(255, 255, 255, 0.85)',
+              borderRadius: 3,
+              backdropFilter: 'blur(10px)',
+              border: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? '1px solid rgba(255, 255, 255, 0.1)'
+                  : '1px solid rgba(255, 255, 255, 0.3)',
+              boxShadow: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? '0 8px 32px rgba(0, 0, 0, 0.3)'
+                  : '0 8px 32px rgba(0, 0, 0, 0.08)',
             }}
           >
             <Typography
@@ -236,16 +247,29 @@ export default function TopPage() {
               component="h1"
               gutterBottom
               sx={{
-                fontWeight: 500,
-                mb: 2,
+                fontWeight: 400,
+                mb: 3,
+                color: 'text.primary',
+                fontSize: { xs: '2.5rem', md: '3rem' },
+                fontFamily: 'serif',
               }}
             >
-              Nokoroa
+              Nokora
             </Typography>
 
-            <Typography variant="body1">
-              心に残る旅の思い出を、大切な人と共有するアプリ。
-              あなたの心に刻まれた旅の体験を、永遠の記録に。
+            <Typography
+              variant="body1"
+              sx={{
+                mb: 4,
+                color: 'text.secondary',
+                lineHeight: 1.6,
+                fontWeight: 400,
+                fontSize: '1rem',
+              }}
+            >
+              旅の思い出を記録し、大切な人と共有するアプリ。あなたの素敵な
+              <br />
+              旅の体験をカタチにしましょう。
             </Typography>
 
             <Box sx={{ mt: 4 }}>
@@ -254,9 +278,21 @@ export default function TopPage() {
                 href="/signup"
                 scroll={false}
                 variant="contained"
-                color="secondary"
                 size="large"
-                sx={{ mr: 2 }}
+                sx={{
+                  mr: 2,
+                  bgcolor: '#9c27b0',
+                  color: 'white',
+                  borderRadius: 1,
+                  px: 3,
+                  py: 1,
+                  fontWeight: 500,
+                  fontSize: '1rem',
+                  textTransform: 'none',
+                  '&:hover': {
+                    bgcolor: '#7b1fa2',
+                  },
+                }}
               >
                 アカウント作成
               </Button>
@@ -265,8 +301,22 @@ export default function TopPage() {
                 href="/about"
                 scroll={false}
                 variant="outlined"
-                color="primary"
                 size="large"
+                sx={{
+                  borderColor: 'primary.main',
+                  color: 'primary.main',
+                  borderRadius: 1,
+                  px: 3,
+                  py: 1,
+                  fontWeight: 500,
+                  fontSize: '1rem',
+                  textTransform: 'none',
+                  '&:hover': {
+                    borderColor: 'primary.dark',
+                    bgcolor: 'primary.main',
+                    color: 'white',
+                  },
+                }}
               >
                 詳しく見る
               </Button>
@@ -279,34 +329,42 @@ export default function TopPage() {
               display: 'flex',
               flexDirection: 'column',
               alignItems: { xs: 'center', md: 'flex-end' },
+              justifyContent: 'center',
               pr: { md: 4 },
               mt: { xs: 4, md: 0 },
+              textAlign: { xs: 'center', md: 'right' },
             }}
           >
             <Typography
               variant="h2"
               sx={{
-                fontWeight: 500,
+                fontWeight: 400,
                 color: 'white',
-                textShadow: '2px 2px 4px rgba(0 0 0 / 0.8)',
+                textShadow:
+                  '3px 3px 12px rgba(0, 0, 0, 0.9), 1px 1px 6px rgba(0, 0, 0, 0.8)',
                 fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
-                textAlign: { xs: 'center', md: 'right' },
+                lineHeight: 1.2,
+                mb: 3,
+                fontFamily: 'serif',
               }}
             >
-              旅の思い出を、永遠に
+              思い出を共有しよう。
             </Typography>
 
             <Typography
               variant="h5"
               sx={{
-                mt: 2,
                 color: 'white',
-                textAlign: 'center',
-                alignSelf: 'center',
-                textShadow: '2px 2px 4px rgba(0 0 0 / 0.8)',
+                textShadow:
+                  '2px 2px 8px rgba(0, 0, 0, 0.9), 1px 1px 4px rgba(0, 0, 0, 0.7)',
+                fontSize: { xs: '1.2rem', md: '1.4rem' },
+                fontWeight: 400,
+                lineHeight: 1.4,
+                fontFamily: 'serif',
+                transform: { xs: 'none', md: 'translateX(-20px)' },
               }}
             >
-              あなたの心に残る旅の記憶を、大切な人と共有しましょう
+              旅の軌跡を、大切な人と。
             </Typography>
           </Box>
         </Stack>

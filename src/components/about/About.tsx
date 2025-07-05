@@ -8,8 +8,7 @@ export default function About() {
     <Box
       component="main"
       sx={{
-        bgcolor: '#F7FAFC',
-        color: 'black',
+        bgcolor: 'background.default',
         minHeight: '100vh',
         mt: '9vh',
       }}
@@ -72,7 +71,7 @@ export default function About() {
               sx={{
                 p: 4,
                 textAlign: 'center',
-                bgcolor: 'white',
+                bgcolor: 'background.paper',
                 borderRadius: 2,
                 boxShadow: '0 4px 6px rgba(0 0 0 / 0.1)',
               }}
@@ -84,6 +83,7 @@ export default function About() {
                 sx={{
                   fontWeight: 500,
                   mb: 3,
+                  color: 'text.primary',
                 }}
               >
                 旅の思い出を、永遠に
@@ -93,6 +93,7 @@ export default function About() {
                 sx={{
                   fontSize: '1.1rem',
                   lineHeight: 1.8,
+                  color: 'text.primary',
                 }}
               >
                 Nokoroaは、あなたの心に刻まれた旅の思い出を、より深く、より特別なものにするためのアプリケーションです。
@@ -117,7 +118,7 @@ export default function About() {
                 sx={{
                   p: 4,
                   height: '100%',
-                  bgcolor: 'white',
+                  bgcolor: 'background.paper',
                   borderRadius: 2,
                   boxShadow: '0 4px 6px rgba(0 0 0 / 0.1)',
                   transition: 'transform 0.2s',
@@ -176,7 +177,7 @@ export default function About() {
                 sx={{
                   p: 4,
                   height: '100%',
-                  bgcolor: 'white',
+                  bgcolor: 'background.paper',
                   borderRadius: 2,
                   boxShadow: '0 4px 6px rgba(0 0 0 / 0.1)',
                   transition: 'transform 0.2s',
@@ -233,7 +234,7 @@ export default function About() {
               elevation={0}
               sx={{
                 p: 4,
-                bgcolor: 'white',
+                bgcolor: 'background.paper',
                 borderRadius: 2,
                 boxShadow: '0 4px 6px rgba(0 0 0 / 0.1)',
               }}
@@ -252,7 +253,11 @@ export default function About() {
               </Typography>
               <Typography
                 variant="body1"
-                sx={{ fontSize: '1.1rem', lineHeight: 1.8 }}
+                sx={{
+                  fontSize: '1.1rem',
+                  lineHeight: 1.8,
+                  color: 'text.primary',
+                }}
               >
                 私たちは、旅の思い出をより豊かに残したいという想いから、
                 このアプリケーションの開発を始めました。
@@ -270,7 +275,7 @@ export default function About() {
               sx={{
                 p: 4,
                 textAlign: 'center',
-                bgcolor: 'white',
+                bgcolor: 'background.paper',
                 borderRadius: 2,
                 boxShadow: '0 4px 6px rgba(0 0 0 / 0.1)',
               }}
@@ -287,7 +292,13 @@ export default function About() {
               >
                 お問い合わせ
               </Typography>
-              <Typography variant="body1" sx={{ fontSize: '1.1rem' }}>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: '1.1rem',
+                  color: 'text.primary',
+                }}
+              >
                 サービスに関するお問い合わせは、
                 <Box
                   component="span"
@@ -321,6 +332,7 @@ function FeatureItem({ children }: { children: React.ReactNode }) {
         mb: 2,
         fontSize: '1.1rem',
         lineHeight: 1.6,
+        color: 'text.primary',
         '&:last-child': { mb: 0 },
       }}
     >
